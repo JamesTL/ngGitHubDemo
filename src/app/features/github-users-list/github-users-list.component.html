@@ -1,0 +1,11 @@
+<h1> Githuh Users</h1>
+<div class="users-list">
+
+    <div *ngFor="let user of gitHubUsersList">
+        <app-git-hub-user [user]="user" (userSelected)="userSelected($event)" class="child"></app-git-hub-user>
+
+    </div>
+
+
+
+</div>
