@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { IGitHubUser } from 'src/app/app.model';
 
 @Component({
   selector: 'app-git-hub-user',
@@ -9,7 +10,7 @@ import { RouterModule } from '@angular/router';
 export class GitHubUserComponent implements OnInit {
 
 
-  @Input() user: any;
+  @Input() user: IGitHubUser = {} as IGitHubUser;
   @Output() userSelected = new EventEmitter()
 
   constructor() { }

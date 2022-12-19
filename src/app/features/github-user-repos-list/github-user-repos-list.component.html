@@ -1,4 +1,8 @@
-<p>github-user-repos-list works!</p>
-<a routerLink="/">Back</a>
 
-{{ gitHubUserReposList | json}}
+<a routerLink="/">Back</a>
+<h2>{{githubUser.login}}</h2>
+    <p>Type: {{githubUser.type}} </p>
+<ul>
+    <li *ngFor="let repo of gitHubUserReposList"> {{repo?.name}} {{repo?.owner?.type}}</li>
+
+</ul>

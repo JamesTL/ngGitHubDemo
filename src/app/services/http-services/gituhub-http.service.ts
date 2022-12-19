@@ -66,6 +66,16 @@ export class GituhubHttpService {
     return results
 
   }
+  // 
+  async getSingleGithubUser(username: string): Promise<any>{
+    const results = await this.octokit.request(
+      `GET /users/${username}`,
+      {
+         username: 'USERNAME' 
+      }
+   )
+   return results
+  }
 }
 
 //     'GET /users/{username}/repos{?type,sort,direction,per_page,page}',

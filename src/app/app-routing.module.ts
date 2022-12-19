@@ -5,7 +5,7 @@ import { GithubUsersListComponent } from './features/github-users-list/github-us
 
 const routes: Routes = [
   { path:'' , component: GithubUsersListComponent},
-  { path:'user-repos', component: GithubUserReposListComponent}
+  { path:'user-repos/:login-name', component: GithubUserReposListComponent}
 ];
 
 @NgModule({

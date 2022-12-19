@@ -13,6 +13,7 @@ import { SharedComponentsModule } from './shared-components/shared-components.mo
 import { GituhubHttpService } from './services/http-services/gituhub-http.service';
 import { GithubUsersListComponent } from './features/github-users-list/github-users-list.component';
 import { GithubUserReposListComponent } from './features/github-user-repos-list/github-user-repos-list.component';
+import { GithubDataService } from './services/data-services/github-data.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { GithubUserReposListComponent } from './features/github-user-repos-list/
     SharedComponentsModule
   ],
   providers: [
-    GituhubHttpService
+    GituhubHttpService,
+    GithubDataService 
   ],
   bootstrap: [AppComponent]
 })
