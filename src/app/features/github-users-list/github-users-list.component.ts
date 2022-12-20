@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { IGitHubUser } from 'src/app/app.model';
@@ -14,6 +15,19 @@ export class GithubUsersListComponent implements OnInit , OnDestroy{
 private readonly ngUnsubscribe = new Subject();
   
   gitHubUsersList:IGitHubUser[] =[];
+  gitHubUsersPaginationList:IGitHubUser[] =[];
+  currentStartIndex: number = 0;
+  currentEndIndex: number = 10;
+  /** */
+
+  length:number = 10;
+  pageSize:number =10;
+  disabled = false;
+  showFirstLastButtons = true;
+  showPageSizeOptions = [];
+  pageSizeOptions= [];
+  hidePageSize =true
+  pageIndex= 0;
 
   constructor(
     private readonly githubDataService: GithubDataService, 
@@ -22,7 +36,12 @@ private readonly ngUnsubscribe = new Subject();
 
   ngOnInit(): void {
     this.githubDataService.githubUserList$.subscribe(
-      (data:[IGitHubUser]) => this.gitHubUsersList = data
+      (data:[IGitHubUser]) =>{ 
+        this.gitHubUsersList = data;
+        this.length = data.length;
+        this.gitHubUsersPaginationList = data.slice(0,10);
+      
+      }
     )
     // fetch user data
     this.githubDataService.getGithubUsers();
@@ -32,6 +51,14 @@ private readonly ngUnsubscribe = new Subject();
   userSelected($e: string) {
     this.router.navigate(['/user-repos' , $e]); // 
   }
+
+  handlePageEvent($event: PageEvent){
+    console.log($event)
+    
+    this.gitHubUsersPaginationList = this.gitHubUsersList.slice(
+      $event.pageIndex*10, ($event.pageIndex*10) + 10)
+  }
+
 
   ngOnDestroy(): void {
 

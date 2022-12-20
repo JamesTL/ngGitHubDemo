@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { LayoutModuleModule } from './layout/layout-module.module';
 import { SharedComponentsModule } from './shared-components/shared-components.module';
 import { GituhubHttpService } from './services/http-services/gituhub-http.service';
@@ -27,6 +28,7 @@ import { GithubDataService } from './services/data-services/github-data.service'
     BrowserAnimationsModule,
     HttpClientModule,
     MatToolbarModule,
+    MatPaginatorModule,
     MatCardModule,
     LayoutModuleModule,
     SharedComponentsModule
