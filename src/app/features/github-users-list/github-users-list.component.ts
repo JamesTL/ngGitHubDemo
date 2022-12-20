@@ -18,8 +18,8 @@ private readonly ngUnsubscribe = new Subject();
   gitHubUsersPaginationList:IGitHubUser[] =[];
   currentStartIndex: number = 0;
   currentEndIndex: number = 10;
-  /** */
-
+  loading: boolean = false;
+  /** Pagination variables*/
   length:number = 10;
   pageSize:number =10;
   disabled = false;
@@ -32,14 +32,17 @@ private readonly ngUnsubscribe = new Subject();
   constructor(
     private readonly githubDataService: GithubDataService, 
     private readonly router: Router
-  ) { }
+  ) { 
+    this.loading = true;
+  }
 
   ngOnInit(): void {
     this.githubDataService.githubUserList$.subscribe(
-      (data:[IGitHubUser]) =>{ 
+      (data:IGitHubUser[]) =>{ 
         this.gitHubUsersList = data;
         this.length = data.length;
         this.gitHubUsersPaginationList = data.slice(0,10);
+        this.loading = false;
       
       }
     )

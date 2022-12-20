@@ -23,6 +23,7 @@ export interface IGitHubUser {
 /** interface  for Github repos API - generated from JSON Response */
 export interface IGitHubRepo{
     id: number;
+    html_url: string;
     node_id: string;
     name: string;
     full_name: string;

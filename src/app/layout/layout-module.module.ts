@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppHeaderComponent } from './app-header/app-header.component';
+import { RouterModule } from '@angular/router';
 
 const componentList = [
   AppHeaderComponent
@@ -12,6 +14,7 @@ const componentList = [
   declarations: componentList,
   imports: [
     CommonModule,
+    RouterModule,
     MatToolbarModule
   ],
   exports: componentList

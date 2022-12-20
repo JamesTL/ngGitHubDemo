@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
-import { first, takeUntil } from 'rxjs/operators';
+import {  Observable, Subject } from 'rxjs';
+import { combineLatestWith, takeUntil } from 'rxjs/operators';
 import { IGitHubRepo, IGitHubUser } from 'src/app/app.model';
 import { GithubDataService } from 'src/app/services/data-services/github-data.service';
-import { GituhubHttpService } from 'src/app/services/http-services/gituhub-http.service';
+
+
 
 
 @Component({
@@ -16,16 +17,19 @@ export class GithubUserReposListComponent implements OnInit, OnDestroy {
    /** to unsubscribe to one or more subscriptions*/
    private readonly ngUnsubscribe = new Subject();
 
-  gitHubUserReposList:IGitHubRepo[] = [];
-  githubUser: IGitHubUser = {} as IGitHubUser;
+gitHubUserReposList:IGitHubRepo[] = [];
+  githubUser: IGitHubUser = {} as IGitHubUser ;
   userLoginName: string = '';
+  loading: boolean = false;
+
+
 
   constructor(
     private readonly githubDataService: GithubDataService, 
     private readonly  route: ActivatedRoute
   ) { 
 
-
+    this.loading = true;
     this.route.params
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((params)=>{
@@ -37,26 +41,32 @@ export class GithubUserReposListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.githubDataService.githubUserRepoList$
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe(
-      (data) => {
-        this.gitHubUserReposList = data;
-      }
-    )
 
-    this.githubDataService.githubUser$
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe(
-      (data) => {
-        this.githubUser = data;
-      }
-    )
+    this.loadData();
 
-  
+  }
+
+  /** loadData */
+  loadData(){
+  const  repos$: Observable<IGitHubRepo[]> = this.githubDataService.githubUserRepoList$;
+  const user$: Observable<IGitHubUser> =  this.githubDataService.githubUser$;
+   
+    repos$
+    .pipe(combineLatestWith(user$))
+    .subscribe(
+        ([repos, user]) =>{
+
+          this.gitHubUserReposList=repos;
+          this.githubUser = user
+          this.loading = false
+        }
+    )
   }
 
   ngOnDestroy(): void {
+    this.githubDataService.updateGithubUserRepoList([]);
+    this.githubDataService.updateGithubUser({}as IGitHubUser);
+
     this.ngUnsubscribe.next(null);
     this.ngUnsubscribe.complete();
 }

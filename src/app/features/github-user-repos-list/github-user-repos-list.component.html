@@ -1,8 +1,24 @@
 
-<a routerLink="/">Back</a>
-<h2>{{githubUser.login}}</h2>
-    <p>Type: {{githubUser.type}} </p>
-<ul>
-    <li *ngFor="let repo of gitHubUserReposList"> {{repo?.name}} {{repo?.owner?.type}}</li>
+<h1 id="appTitle" data-test-appMainHeader  style="margin:0.5em 0; font-size:1.5em">User Repos</h1>
 
-</ul>
+<a mat-button routerLink="/" color="primary" style="margin:0 0 0.5em; font-size:1.5em;padding-left:0">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_back"></mat-icon>
+    Back to users
+</a>
+
+<div *ngIf="loading; else repoList">
+    <p>loading  </p>
+</div>
+
+<ng-template #repoList>
+    <div class="repos-container"  style="width:90%">
+        <div class="selected-user">
+            <app-git-hub-user [user]="githubUser" [userActions]=false></app-git-hub-user>
+        </div>
+        <div class="repo-list">
+            <ng-container  *ngFor="let repo of gitHubUserReposList">
+                <app-git-hub-repo [githubRepo]="repo"></app-git-hub-repo>
+            </ng-container>
+     </div>
+    </div>
+</ng-template>

@@ -1,21 +1,33 @@
-<h1> Githuh Users</h1>
-<div>
-    <mat-paginator #paginator
-               class="demo-paginator"
-               (page)="handlePageEvent($event)"
-               [length]="length"
-               [pageSize]="pageSize"
-               [disabled]="disabled"
-               [showFirstLastButtons]="showFirstLastButtons"
-               [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
-               [hidePageSize]="hidePageSize"
-               [pageIndex]="pageIndex"
-               aria-label="Select page">
-    </mat-paginator>
+
+
+<h1 style="margin:1em 0; font-size:1.5em">Github Users</h1>
+ 
+
+
+<div *ngIf="loading ; else userList">
+    <p>loading  </p>
 </div>
-<div class="users-list" *ngIf="gitHubUsersPaginationList.length>0">
-    <ng-container *ngFor="let user of gitHubUsersPaginationList">
-        <app-git-hub-user [user]="user" (userSelected)="userSelected($event)" class="child"></app-git-hub-user>
-    </ng-container>
-</div>
+<ng-template #userList>
+    <div class="paginator">
+        <mat-paginator #paginator
+                   class="demo-paginator"
+                   (page)="handlePageEvent($event)"
+                   [length]="length"
+                   [pageSize]="pageSize"
+                   [disabled]="disabled"
+                   [showFirstLastButtons]="showFirstLastButtons"
+                   [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+                   [hidePageSize]="hidePageSize"
+                   [pageIndex]="pageIndex"
+                   aria-label="Select page">
+        </mat-paginator>
+    </div>
+    <div class="users-list" *ngIf="gitHubUsersPaginationList.length>0">
+        <ng-container *ngFor="let user of gitHubUsersPaginationList">
+            <app-git-hub-user [user]="user" (userSelected)="userSelected($event)" class="child-user"></app-git-hub-user>
+        </ng-container>
+    </div>
+
+</ng-template>
+
 

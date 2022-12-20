@@ -10,21 +10,22 @@ import { GituhubHttpService } from '../http-services/gituhub-http.service';
 export class GithubDataService {
 
     // source Observable subjects
-    private readonly githubUserList = new BehaviorSubject<[IGitHubUser]>([{} as IGitHubUser]);
+    private readonly githubUserList = new BehaviorSubject<IGitHubUser[]>([]);
     private readonly githubUser = new BehaviorSubject<IGitHubUser>({} as IGitHubUser);
-    private readonly githubUserRepoList = new BehaviorSubject<[IGitHubRepo]>([{} as IGitHubRepo]);
+    private readonly githubUserRepoList = new BehaviorSubject<IGitHubRepo[]>([]);
     // public subscribe
-    public githubUserList$: Observable<[IGitHubUser]> = this.githubUserList.asObservable();
+    public githubUserList$: Observable<IGitHubUser[]> = this.githubUserList.asObservable();
     public githubUser$: Observable<IGitHubUser> = this.githubUser.asObservable();
-    public githubUserRepoList$: Observable<[IGitHubRepo]> = this.githubUserRepoList.asObservable();
+    public githubUserRepoList$: Observable<IGitHubRepo[]> = this.githubUserRepoList.asObservable();
 
   constructor(
     private readonly gituhubHttpService: GituhubHttpService,
   ) { }
+  
+  
 
-
-  // Functions to update source functions
-  public updateGithubUserList(userList: [IGitHubUser]): void {
+  // Functions to update source BehaviorSubjects
+  public updateGithubUserList(userList: IGitHubUser[]): void {
     if (!userList) {
       return;
     }
@@ -38,14 +39,12 @@ export class GithubDataService {
     this.githubUser.next(user);
   }
 
-  public  updateGithubUserRepoList (repoList:[IGitHubRepo]): void {
+  public  updateGithubUserRepoList (repoList:IGitHubRepo[]): void {
     if (!repoList) {
       return;
     }
     this.githubUserRepoList.next(repoList);
   }
-
-
   /**
    * Get Github User List and set next value of Behavior Subject
    */

@@ -11,6 +11,7 @@ export class GitHubUserComponent implements OnInit {
 
 
   @Input() user: IGitHubUser = {} as IGitHubUser;
+  @Input() userActions: boolean =true
   @Output() userSelected = new EventEmitter()
 
   constructor() { }

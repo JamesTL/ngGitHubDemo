@@ -41,18 +41,15 @@ export class GituhubHttpService {
   
   }
   
-  /** */
+  /**  get Github users */
    async getGithubUsers(): Promise<any>{
-    // const octokit = new Octokit({
-    //   auth: gituHUbFineGrainedAccessToken
-    // });
 
-    const results = await this.octokit.request('GET /users', {});
+    const results = await this.octokit.request('GET /users{100}', {}); 
 
     return results
   }
 
-  /** */
+  /** get github user's repos */
 
   async getGithubUserRepos(username: string){
 
@@ -64,9 +61,9 @@ export class GituhubHttpService {
      )
 
     return results
-
   }
-  // 
+  
+  /** get single gitub user */
   async getSingleGithubUser(username: string): Promise<any>{
     const results = await this.octokit.request(
       `GET /users/${username}`,

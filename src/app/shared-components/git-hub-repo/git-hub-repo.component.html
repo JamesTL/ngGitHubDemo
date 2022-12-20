@@ -1,0 +1,15 @@
+<mat-card class="example-card" style="margin-bottom:1em;width:100%">
+    <mat-card-header color="primary">
+        <mat-card-title>{{githubRepo.name}}</mat-card-title>
+        <mat-card-subtitle>{{githubRepo.description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+        <a mat-button href={{githubRepo.html_url}} target="_blank" color="primary">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="outbound"></mat-icon>
+            Visit {{githubRepo.name}} repository on Github website
+        </a>
+    </mat-card-actions>
+    <mat-card-footer>
+    </mat-card-footer>
+</mat-card>
+

@@ -1,9 +1,30 @@
 
-.users-list {
-    display:flex;
-    flex-flow: row wrap;
-    justify-content:center;
-    flex-grow: 1;
-    gap: 10px 20px; 
+
+.paginator{
+    margin-bottom:1em;
 }
+// .users-list {
+//     display:flex;
+//     flex-flow: row wrap;
+//     justify-content:center;
+//     flex-grow: 1;
+//     gap: 10px; 
+// }
+
+
+
+.users-list {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    gap:1em;
+  }
+  
+  .child {
+    flex: 0 35%;
+    height: 100px;
+    min-width:200px;
+    margin-bottom: 2%; /* (100-32*3)/2 */
+  }
 
