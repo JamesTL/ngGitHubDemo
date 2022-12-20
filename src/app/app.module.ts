@@ -18,6 +18,8 @@ import { GithubDataService } from './services/data-services/github-data.service'
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule} from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatListModule,
     MatButtonModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     LayoutModuleModule,
     SharedComponentsModule
   ],

@@ -4,27 +4,30 @@
     gap:1em
 
 }
+
 .mat-card-header-text{
     margin: 0 1em 0;
 }
 
-.users-list {
+.selected-user{
+    flex-grow:0;
+}
+.repo-list{
+    flex-growth:1;
+}
 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content:space-around;
-    gap:1em;
-  }
-  
-//   .child {
-//     flex: 0 35%;
-//     height: 100px;
-//     min-width:200px;
-//     margin-bottom: 2%; /* (100-32*3)/2 */
-//   }
-  .child {
-  width: 32%;
-  padding-bottom: 32%; /* Same as width, sets height */
-  margin-bottom: 2%; /* (100-32*3)/2 */
-  position: relative;
-  }
+
+@media only screen and (max-width: 800px) {
+
+    .repos-container{
+
+        display:block;
+        padding:0 0.5em;
+    }
+
+    h2{
+        margin:0.5em
+    }
+
+
+}

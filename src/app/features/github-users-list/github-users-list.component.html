@@ -1,11 +1,9 @@
 
 
-<h1 style="margin:1em 0; font-size:1.5em">Github Users</h1>
+<h1 style="margin:1em 0; font-size:2.5em">Github Users</h1>
  
-
-
-<div *ngIf="loading ; else userList">
-    <p>loading  </p>
+<div *ngIf="loading ; else userList" class="progress-spinner">
+    <app-progress-spinner></app-progress-spinner>
 </div>
 <ng-template #userList>
     <div class="paginator">

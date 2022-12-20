@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
 import { PageEvent } from '@angular/material/paginator';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { IGitHubUser } from 'src/app/app.model';
@@ -19,8 +21,9 @@ private readonly ngUnsubscribe = new Subject();
   currentStartIndex: number = 0;
   currentEndIndex: number = 10;
   loading: boolean = false;
+
   /** Pagination variables*/
-  length:number = 10;
+  length:number = 10;  
   pageSize:number =10;
   disabled = false;
   showFirstLastButtons = true;
@@ -42,7 +45,7 @@ private readonly ngUnsubscribe = new Subject();
         this.gitHubUsersList = data;
         this.length = data.length;
         this.gitHubUsersPaginationList = data.slice(0,10);
-        this.loading = false;
+         this.loading = false;
       
       }
     )
@@ -55,16 +58,12 @@ private readonly ngUnsubscribe = new Subject();
     this.router.navigate(['/user-repos' , $e]); // 
   }
 
+  /** recalculate pagination index values */
   handlePageEvent($event: PageEvent){
-    console.log($event)
-    
-    this.gitHubUsersPaginationList = this.gitHubUsersList.slice(
-      $event.pageIndex*10, ($event.pageIndex*10) + 10)
+    this.gitHubUsersPaginationList = this.gitHubUsersList.slice( $event.pageIndex*10, ($event.pageIndex*10) + 10)
   }
 
-
   ngOnDestroy(): void {
-
     this.ngUnsubscribe.next(null);
     this.ngUnsubscribe.complete();
 }

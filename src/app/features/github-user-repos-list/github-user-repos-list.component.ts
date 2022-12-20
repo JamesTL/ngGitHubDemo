@@ -23,7 +23,6 @@ gitHubUserReposList:IGitHubRepo[] = [];
   loading: boolean = false;
 
 
-
   constructor(
     private readonly githubDataService: GithubDataService, 
     private readonly  route: ActivatedRoute
@@ -41,9 +40,7 @@ gitHubUserReposList:IGitHubRepo[] = [];
   }
 
   ngOnInit(): void {
-
     this.loadData();
-
   }
 
   /** loadData */

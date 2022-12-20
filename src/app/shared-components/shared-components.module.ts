@@ -5,11 +5,15 @@ import { GitHubUserComponent } from './git-hub-user/git-hub-user.component';
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { GitHubRepoComponent } from './git-hub-repo/git-hub-repo.component';
+import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.component';
 
 const sharedComponents = [
   GitHubUserComponent,
-  GitHubRepoComponent
+  GitHubRepoComponent,
+  ProgressSpinnerComponent
+
 ] 
 
 
@@ -21,7 +25,8 @@ const sharedComponents = [
     RouterModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   exports: sharedComponents
 })

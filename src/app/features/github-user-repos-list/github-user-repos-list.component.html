@@ -1,19 +1,23 @@
 
-<h1 id="appTitle" data-test-appMainHeader  style="margin:0.5em 0; font-size:1.5em">User Repos</h1>
-
-<a mat-button routerLink="/" color="primary" style="margin:0 0 0.5em; font-size:1.5em;padding-left:0">
+<a mat-button routerLink="/" color="primary" style="margin:0.5em 0; font-size:1.5em;padding-left:0">
     <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_back"></mat-icon>
-    Back to users
+    Back to GitHub Users
 </a>
 
+
+
 <div *ngIf="loading; else repoList">
-    <p>loading  </p>
+    <app-progress-spinner></app-progress-spinner>
 </div>
 
 <ng-template #repoList>
-    <div class="repos-container"  style="width:90%">
+  <h1 id="appTitle" data-test-appMainHeader  style="font-size:2.5em"> {{githubUser.login}}: Github repositories</h1>
+    <div class="repos-container">
+       
         <div class="selected-user">
+            
             <app-git-hub-user [user]="githubUser" [userActions]=false></app-git-hub-user>
+            <h2>  {{gitHubUserReposList.length}} repositories in total</h2>
         </div>
         <div class="repo-list">
             <ng-container  *ngFor="let repo of gitHubUserReposList">
