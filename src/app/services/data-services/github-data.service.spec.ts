@@ -1,12 +1,18 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClient } from '@angular/common/http';
 
 import { GithubDataService } from './github-data.service';
 
-describe('GithubDataService', () => {
+fdescribe('GithubDataService', () => {
   let service: GithubDataService;
+  const httpClientSpy = jasmine.createSpyObj('HttpClient', ['post', 'get']);
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: HttpClient, useValue: httpClientSpy}
+      ]
+    });
     service = TestBed.inject(GithubDataService);
   });
 

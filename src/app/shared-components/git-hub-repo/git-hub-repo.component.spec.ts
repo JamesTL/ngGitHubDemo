@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GitHubRepoComponent } from './git-hub-repo.component';
 
-describe('GitHubRepoComponent', () => {
+fdescribe('GitHubRepoComponent', () => {
   let component: GitHubRepoComponent;
   let fixture: ComponentFixture<GitHubRepoComponent>;
 
