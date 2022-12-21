@@ -13,9 +13,7 @@ const sharedComponents = [
   GitHubUserComponent,
   GitHubRepoComponent,
   ProgressSpinnerComponent
-
 ] 
-
 
 
 @NgModule({

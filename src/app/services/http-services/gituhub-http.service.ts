@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http'
 import { Octokit } from 'octokit';
-import { OctokitResponse} from "@octokit/types";
-
-const gituHUbFineGrainedAccessToken ='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';
+import { environment } from './../../../environments/environment';
 
 export interface User {
   login: string;
@@ -31,19 +29,18 @@ export interface User {
 })
 export class GituhubHttpService {
 
-   octokit;
+  octokit: Octokit;
 
   constructor(private readonly httpClient: HttpClient) { 
 
     this.octokit = new Octokit({
-      auth: gituHUbFineGrainedAccessToken
+      auth: environment.gituHUbFineGrainedAccessToken
     });
-  
   }
   
   /**  get Github users */
    async getGithubUsers(): Promise<any>{
-
+   
     const results = await this.octokit.request('GET /users{100}', {}); 
 
     return results
@@ -63,16 +60,17 @@ export class GituhubHttpService {
     return results
   }
   
-  /** get single gitub user */
+  /** get single github user */
   async getSingleGithubUser(username: string): Promise<any>{
+
     const results = await this.octokit.request(
-      `GET /users/${username}`,
-      {
-         username: 'USERNAME' 
-      }
-   )
-   return results
+        `GET /users/${username}`,
+        {
+          username: 'USERNAME' 
+        }
+      )
+
+    return results
   }
 }
 
-//     'GET /users/{username}/repos{?type,sort,direction,per_page,page}',

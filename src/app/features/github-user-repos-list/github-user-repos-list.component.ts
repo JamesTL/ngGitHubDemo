@@ -5,9 +5,6 @@ import { combineLatestWith, takeUntil } from 'rxjs/operators';
 import { IGitHubRepo, IGitHubUser } from 'src/app/app.model';
 import { GithubDataService } from 'src/app/services/data-services/github-data.service';
 
-
-
-
 @Component({
   selector: 'app-github-user-repos-list',
   templateUrl: './github-user-repos-list.component.html',
@@ -22,13 +19,11 @@ gitHubUserReposList:IGitHubRepo[] = [];
   userLoginName: string = '';
   loading: boolean = false;
 
-
   constructor(
     private readonly githubDataService: GithubDataService, 
     private readonly  route: ActivatedRoute
   ) { 
 
-    this.loading = true;
     this.route.params
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((params)=>{
@@ -36,20 +31,21 @@ gitHubUserReposList:IGitHubRepo[] = [];
         this.githubDataService.getGithubUser(this.userLoginName);
         this.githubDataService.getGithubUserRepos(this.userLoginName);
     })    
-
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.loadData();
   }
 
-  /** loadData */
+  /** subscribe and set data values*/
   loadData(){
   const  repos$: Observable<IGitHubRepo[]> = this.githubDataService.githubUserRepoList$;
   const user$: Observable<IGitHubUser> =  this.githubDataService.githubUser$;
    
     repos$
     .pipe(combineLatestWith(user$))
+    .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe(
         ([repos, user]) =>{
 
@@ -66,7 +62,5 @@ gitHubUserReposList:IGitHubRepo[] = [];
 
     this.ngUnsubscribe.next(null);
     this.ngUnsubscribe.complete();
-}
-
-
+  }
 }

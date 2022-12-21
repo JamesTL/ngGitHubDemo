@@ -1,7 +1,8 @@
-<mat-card class="example-card" style="margin-bottom:1em;width:100%">
+<mat-card class="repo-card" style="margin-bottom:1em;width:100%">
     <mat-card-header color="primary">
+        <div mat-card-avatar class="header-avatar"></div>
         <mat-card-title>{{githubRepo.name}}</mat-card-title>
-        <mat-card-subtitle>{{githubRepo.description}}</mat-card-subtitle>
+        <mat-card-subtitle style="line-break: strict;">{{githubRepo.description}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-actions>
         <a mat-button href={{githubRepo.html_url}} target="_blank" color="primary">

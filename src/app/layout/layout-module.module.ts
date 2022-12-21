@@ -9,7 +9,6 @@ const componentList = [
   AppHeaderComponent
 ]
 
-
 @NgModule({
   declarations: componentList,
   imports: [

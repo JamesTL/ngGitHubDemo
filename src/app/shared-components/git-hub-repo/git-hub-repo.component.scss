@@ -1,0 +1,15 @@
+.repo-card{
+    margin-bottom:1em;
+    width:100%
+}
+.header-avatar{
+    background-image: url('../../../assets/logos/github-mark-white.png');
+    background-size: cover;
+  }
+  
+@media only screen and (max-width: 400px) {
+    .repo-card{
+        margin:1em;
+        
+    }
+}

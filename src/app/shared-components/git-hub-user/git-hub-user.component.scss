@@ -4,8 +4,19 @@
   width:200px; 
 }
 
-.example-header-image{
+.header-avatar{
   background-image: url('../../../assets/logos/github-mark-white.png');
   background-size: cover;
-
 }
+
+@media only screen and (max-width: 600px) {
+
+    .user-card{
+      margin-bottom:0.5em;
+    }
+    .mat-card-content{
+      text-align: center;
+    }
+    
+}
+

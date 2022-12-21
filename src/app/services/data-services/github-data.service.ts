@@ -22,7 +22,6 @@ export class GithubDataService {
     private readonly gituhubHttpService: GituhubHttpService,
   ) { }
   
-  
 
   // Functions to update source BehaviorSubjects
   public updateGithubUserList(userList: IGitHubUser[]): void {
@@ -45,39 +44,37 @@ export class GithubDataService {
     }
     this.githubUserRepoList.next(repoList);
   }
+
+
   /**
-   * Get Github User List and set next value of Behavior Subject
+   * Get Github User List from API  and set next value of Behavior Subject
    */
   public getGithubUsers(): void {
 
     this.gituhubHttpService.getGithubUsers().then((response) =>{
-
         this.updateGithubUserList(response.data)
     })
 
   }
 
   /**
-   * Get specific Github User and set next value of Behavior Subject
+   * Get specific Github User from API and set next value of Behavior Subject
    */
   public getGithubUser(userLoginName: string):void{
     if(!userLoginName) { return;};
 
     this.gituhubHttpService.getSingleGithubUser(userLoginName).then((response) =>{
-
       this.updateGithubUser(response.data);
     })
-
-}
+  }
 
   /**
-   * Get Github User repos List and set next value of Behavior Subject
+   * Get Github User repos List from API and set next value of Behavior Subject
    */
   public getGithubUserRepos(userLoginName: string):void{
         if(!userLoginName) { return ;};
 
         this.gituhubHttpService.getGithubUserRepos(userLoginName).then((response) =>{
-
           this.updateGithubUserRepoList(response.data);
         })
 

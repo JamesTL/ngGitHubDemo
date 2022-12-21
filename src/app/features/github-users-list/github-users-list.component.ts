@@ -3,7 +3,7 @@ import { ThemePalette } from '@angular/material/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { IGitHubUser } from 'src/app/app.model';
 import { GithubDataService } from 'src/app/services/data-services/github-data.service';
 
@@ -36,17 +36,19 @@ private readonly ngUnsubscribe = new Subject();
     private readonly githubDataService: GithubDataService, 
     private readonly router: Router
   ) { 
-    this.loading = true;
+    
   }
 
   ngOnInit(): void {
-    this.githubDataService.githubUserList$.subscribe(
+    this.loading = true;
+    this.githubDataService.githubUserList$
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe(
       (data:IGitHubUser[]) =>{ 
         this.gitHubUsersList = data;
         this.length = data.length;
         this.gitHubUsersPaginationList = data.slice(0,10);
          this.loading = false;
-      
       }
     )
     // fetch user data
@@ -58,7 +60,7 @@ private readonly ngUnsubscribe = new Subject();
     this.router.navigate(['/user-repos' , $e]); // 
   }
 
-  /** recalculate pagination index values */
+  /** handle pagination events  - recalculate pagination index values */
   handlePageEvent($event: PageEvent){
     this.gitHubUsersPaginationList = this.gitHubUsersList.slice( $event.pageIndex*10, ($event.pageIndex*10) + 10)
   }
@@ -66,6 +68,6 @@ private readonly ngUnsubscribe = new Subject();
   ngOnDestroy(): void {
     this.ngUnsubscribe.next(null);
     this.ngUnsubscribe.complete();
-}
+  }
 
 }

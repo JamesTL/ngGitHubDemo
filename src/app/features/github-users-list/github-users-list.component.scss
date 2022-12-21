@@ -3,31 +3,24 @@
 .paginator{
     margin-bottom:1em;
 }
-// .users-list {
-//     display:flex;
-//     flex-flow: row wrap;
-//     justify-content:center;
-//     flex-grow: 1;
-//     gap: 10px; 
-// }
 
-
-
+h1{
+  margin:1em 0; 
+  font-size:2.5em;
+  font-weight:semi-bold;
+}
 .users-list {
   display: flex;
   flex-wrap: wrap;
   justify-content:space-around;
   gap:1em;
 }
-  
-
-  .progress-spinner{
+ .progress-spinner{
     display:flex;
     flex-direction: row;
     justify-content: center;
   
-  }
-
+}
   @media only screen and (max-width: 600px) {
 
     .users-list{
@@ -41,10 +34,11 @@
       margin-bottom:0.5em;
     }
 
+    h1 {
+      margin-left:0.5em;
+    }
     h2{
         margin:0.5em
     }
-
-
 }
 

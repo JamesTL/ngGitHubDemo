@@ -1,17 +1,15 @@
 
-<a mat-button routerLink="/" color="primary" style="margin:0.5em 0; font-size:1.5em;padding-left:0">
+<a mat-button routerLink="/" color="primary" class="back-link">
     <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_back"></mat-icon>
-    Back to GitHub Users
+    Back to GitHub users
 </a>
-
-
 
 <div *ngIf="loading; else repoList">
     <app-progress-spinner></app-progress-spinner>
 </div>
 
 <ng-template #repoList>
-  <h1 id="appTitle" data-test-appMainHeader  style="font-size:2.5em"> {{githubUser.login}}: Github repositories</h1>
+  <h1 id="appTitle"  style="font-size:2.5em">Github repositories: {{githubUser.login}}</h1>
     <div class="repos-container">
        
         <div class="selected-user">
