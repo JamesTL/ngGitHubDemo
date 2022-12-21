@@ -1,7 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
 import { PageEvent } from '@angular/material/paginator';
-import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { IGitHubUser } from 'src/app/app.model';

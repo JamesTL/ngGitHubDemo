@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { GithubUserReposListComponent } from './github-user-repos-list.component';
 
-fdescribe('GithubUserReposListComponent', () => {
+describe('GithubUserReposListComponent', () => {
   let component: GithubUserReposListComponent;
   let fixture: ComponentFixture<GithubUserReposListComponent>;
   const httpClientSpy = jasmine.createSpyObj('HttpClient', ['post', 'get']);

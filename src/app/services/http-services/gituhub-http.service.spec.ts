@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { GituhubHttpService } from './gituhub-http.service';
 
-fdescribe('GituhubHttpService', () => {
+describe('GituhubHttpService', () => {
   let service: GituhubHttpService;
 
   beforeEach(() => {

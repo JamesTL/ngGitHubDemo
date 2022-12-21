@@ -1,10 +1,10 @@
 
 <h1>Github users</h1>
-<div *ngIf="loading ; else userList" class="progress-spinner">
+<div *ngIf="loading ; else userList" class="progress-spinner" data-test-id="loadingSpinner">
     <app-progress-spinner></app-progress-spinner>
 </div>
 <ng-template #userList>
-    <div class="paginator">
+    <div class="paginator" data-test-id="paginator">
         <mat-paginator #paginator
                    class="demo-paginator"
                    (page)="handlePageEvent($event)"
@@ -18,7 +18,7 @@
                    aria-label="Select page">
         </mat-paginator>
     </div>
-    <div class="users-list" *ngIf="gitHubUsersPaginationList.length>0">
+    <div class="users-list" *ngIf="gitHubUsersPaginationList.length>0" data-test-id="usersListContainer">
         <ng-container *ngFor="let user of gitHubUsersPaginationList">
             <app-git-hub-user [user]="user" (userSelected)="userSelected($event)" class="child-user"></app-git-hub-user>
         </ng-container>

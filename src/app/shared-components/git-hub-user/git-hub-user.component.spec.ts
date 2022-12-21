@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GitHubUserComponent } from './git-hub-user.component';
 
-fdescribe('GitHubUserComponent', () => {
+describe('GitHubUserComponent', () => {
   let component: GitHubUserComponent;
   let fixture: ComponentFixture<GitHubUserComponent>;
 
