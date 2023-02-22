@@ -17,6 +17,7 @@
                    [pageIndex]="pageIndex"
                    aria-label="Select page">
         </mat-paginator>
+        
     </div>
     <div class="users-list" *ngIf="gitHubUsersPaginationList.length>0" data-test-id="usersListContainer">
         <ng-container *ngFor="let user of gitHubUsersPaginationList">
