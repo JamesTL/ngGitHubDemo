@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  gituHUbFineGrainedAccessToken :'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'
+  gituHUbFineGrainedAccessToken :'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'
 };
 
 /*

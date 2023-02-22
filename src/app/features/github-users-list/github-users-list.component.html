@@ -20,7 +20,7 @@
     </div>
     <div class="users-list" *ngIf="gitHubUsersPaginationList.length>0" data-test-id="usersListContainer">
         <ng-container *ngFor="let user of gitHubUsersPaginationList">
-            <app-git-hub-user [user]="user" (userSelected)="userSelected($event)" class="child-user"></app-git-hub-user>
+            <app-git-hub-user [user]="user" (userSelected)="userSelected($event)" class="child-user" data-testid="userCard"></app-git-hub-user>
         </ng-container>
     </div>
 </ng-template>
